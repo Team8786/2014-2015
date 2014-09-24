@@ -22,5 +22,8 @@ task main()
 {
    motor[motorA] = 100;   // Motor C is run at a power level of 100.
    motor[motorB] = 100;   // Motor B is run at a power level of 100.
-   wait1Msec(1000000);       // The program waits 4000 milliseconds (4 seconds) before running further code
+   wait1Msec(4000);       // The program waits 4000 milliseconds (4 seconds) before running further code
+   motor[motorA] = -100;
+   motor[motorB] = -100;
+   wait1Msec(4000);
 }
