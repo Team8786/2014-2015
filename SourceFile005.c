@@ -30,7 +30,6 @@ task main()
     {
       motor[motorD] = 0;
     }
-      {
     getJoystickSettings(joystick); //retrieves data from the joystick
 
     if(abs(joystick.joy1_y2) > threshold)
@@ -44,7 +43,7 @@ task main()
 
     if(joy1Btn(8))
     {
-      motor[motorF] = 70; //right trigger moves harvester
+    	motor[motorF] = +70; //right trigger moves harvester
     }
     if(joy1Btn(7))
     {
