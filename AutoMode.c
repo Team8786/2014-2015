@@ -1,7 +1,8 @@
 #pragma config(Hubs,  S1, HTMotor,  HTMotor,  HTServo,  none)
-#pragma config(Sensor, S2,     ,               sensorTouch)
-#pragma config(Motor,  mtr_S1_C1_1,     motorD,        tmotorTetrix, openLoop, driveRight)
-#pragma config(Motor,  mtr_S1_C1_2,     motorE,        tmotorTetrix, openLoop, driveLeft)
+#pragma config(Sensor, S2,     Touch,          sensorTouch)
+#pragma config(Sensor, S3,     IRSeeker,       sensorHiTechnicIRSeeker600)
+#pragma config(Motor,  mtr_S1_C1_1,     motorD,        tmotorTetrix, openLoop, reversed)
+#pragma config(Motor,  mtr_S1_C1_2,     motorE,        tmotorTetrix, openLoop)
 #pragma config(Motor,  mtr_S1_C2_1,     motorF,        tmotorTetrix, openLoop)
 #pragma config(Motor,  mtr_S1_C2_2,     motorG,        tmotorTetrix, openLoop)
 #pragma config(Servo,  srvo_S1_C3_1,    servo1,               tServoNone)
@@ -16,17 +17,33 @@ task main()
 {
 motor[motorD] = 50;
 motor[motorE] = 50;
-sleep(8000);
+while(SensorValue[S2] == 0)
+{
+}
 motor[motorD] = -50;
 motor[motorE] = -50;
-sleep(8000);
-motor[motorD] = 50;
-motor[motorE] = 50;
-sleep(5000);
-motor[motorD] = 100;
-motor[motorE] = -100;
-sleep(3000);
-motor[motorD] = -100;
-motor[motorE] = 100;
-sleep(8000);
+while(SensorValue[S3]!=5)
+{
+	if(SensorValue[S3] <5)
+	{
+		motor[motorD] = -50;
+		motor[motorE] = 50;
+		}
+
+	if(SensorValue[S3] >6)
+	{
+		motor[motorD] = 50;
+		motor[motorE] = -50;
+		}
+	}
+//motor[motorD] = 50;
+//motor[motorE] = 50;
+//sleep(5000);
+//motor[motorD] = 100;
+//motor[motorE] = -100;
+//sleep(3000);
+//motor[motorD] = -100;
+//motor[motorE] = 100;
+//sleep(8000);
+
 }
