@@ -41,17 +41,17 @@ task main()
       motor[motorE] = 0;
     }
 
-    if(joy1Btn(8))
+    if(joy1Btn(5))
     {
-    	motor[motorF] = +70; //right trigger moves harvester
+    	motor[motorB] = -100; //right bumper moves harvester
     }
-    if(joy1Btn(7))
+    else if(joy1Btn(6))
     {
-    	motor[motorF] = -70; //left trigger reverses harvester
+    	motor[motorB] = 100; //left bumper reverses harvester
     }
     else
     {
-      motor[motorF] = 0;
+      motor[motorB] = 0;
     }
 	}
 }
