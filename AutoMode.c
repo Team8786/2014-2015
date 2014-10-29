@@ -17,20 +17,22 @@ task main()
 {
 motor[motorD] = 50;
 motor[motorE] = 50;
-while(SensorValue[S2] == 0)
-{
-}
+wait1Msec(2400);
+//while(SensorValue[S2] == 0)
 motor[motorD] = -50;
-motor[motorE] = -50;
-while(SensorValue[S3]!=5)
+motor[motorE] = 50;
+wait1Msec(2000);
+//motor[motorD] = -50;
+//motor[motorE] = -50;
+//while(SensorValue[S3]!=5)
 {
-	if(SensorValue[S3] <5)
+	if(SensorValue[S2] <5)
 	{
 		motor[motorD] = -50;
 		motor[motorE] = 50;
 		}
 
-	if(SensorValue[S3] >6)
+	if(SensorValue[S2] >5)
 	{
 		motor[motorD] = 50;
 		motor[motorE] = -50;
