@@ -11,7 +11,7 @@
 
 #include "JoystickDriver.c" //Joystick is included in this program
 
-task main()
+task controllermode()
 {
 	int threshold = 15; //to avoid unnecessary movement
 
