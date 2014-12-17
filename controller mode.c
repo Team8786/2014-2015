@@ -2,10 +2,10 @@
 #pragma config(Sensor, S1,     ,               sensorI2CMuxController)
 #pragma config(Motor,  motorB,           ,             tmotorNXT, openLoop)
 #pragma config(Motor,  motorC,           ,             tmotorNXT, openLoop)
-#pragma config(Motor,  mtr_S1_C1_1,     motorD,        tmotorTetrix, openLoop, reversed, driveRight)
+#pragma config(Motor,  mtr_S1_C1_1,     green,         tmotorTetrix, openLoop, reversed, driveRight)
 #pragma config(Motor,  mtr_S1_C1_2,     motorE,        tmotorTetrix, openLoop, driveLeft)
 #pragma config(Motor,  mtr_S1_C2_1,     motorF,        tmotorTetrix, openLoop)
-#pragma config(Motor,  mtr_S1_C2_2,     motorG,        tmotorTetrix, openLoop)
+#pragma config(Motor,  mtr_S1_C2_2,     red,           tmotorTetrix, openLoop)
 #pragma config(Servo,  srvo_S1_C3_1,    servo1,               tServoStandard)
 #pragma config(Servo,  srvo_S1_C3_2,    servo2,               tServoNone)
 #pragma config(Servo,  srvo_S1_C3_3,    servo3,               tServoNone)
@@ -31,20 +31,20 @@ task main()
 
 		if(abs(joystick.joy1_y1) > threshold)
 		{
-			motor[motorD] = joystick.joy1_y1; //y1 controller moves motorD
+			motor[green] = joystick.joy1_y1 /2; //y1 controller moves motorD
 		}
 		else
 		{
-			motor[motorD] = 0;
+			motor[green] = 0;
 		}
 
 		if(abs(joystick.joy1_y2) > threshold)
 		{
-			motor[motorE] = joystick.joy1_y2; //y2 controller moves motorE
+			motor[red] = joystick.joy1_y2 /2; //y2 controller moves motorE
 		}
 		else
 		{
-			motor[motorE] = 0;
+			motor[red] = 0;
 		}
 
 
@@ -58,6 +58,29 @@ task main()
 
 		{
 			moveServo (0);
+		}
+
+		if(joy2Btn(7) == 1 || joy1Btn(7) == 1) //If Joy2-Button7 || Joy1-Button7 is pressed:
+		{
+			motor[motorF] = -70;
+		}
+
+		else if(joy2Btn(8) == 1 || joy1Btn(8) == 1) //If Joy2-Button8 || Joy1-Button8 is pressed:
+
+		{
+			motor[motorF] = 70;
+		}
+		else
+		{motor[motorF] = 0;
+		}
+
+		if(abs(joystick.joy2_y2) > threshold)
+		{
+			motor[motorA] = joystick.joy2_y2; //y2 controller moves harvester
+		}
+		else
+		{
+			motor[motorA] = 0;
 		}
 	}
 }

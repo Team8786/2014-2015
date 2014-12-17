@@ -1,11 +1,12 @@
 #pragma config(Hubs,  S1, HTMotor,  HTMotor,  HTServo,  none)
+#pragma config(Sensor, S1,     ,               sensorI2CMuxController)
 #pragma config(Sensor, S2,     Touch,          sensorTouch)
 #pragma config(Sensor, S3,     IRSeeker,       sensorHiTechnicIRSeeker600)
 #pragma config(Sensor, S4,     Touch2,         sensorTouch)
-#pragma config(Motor,  mtr_S1_C1_1,     motorD,        tmotorTetrix, openLoop, reversed)
-#pragma config(Motor,  mtr_S1_C1_2,     motorE,        tmotorTetrix, openLoop)
+#pragma config(Motor,  mtr_S1_C1_1,     green,         tmotorTetrix, openLoop, reversed, driveRight)
+#pragma config(Motor,  mtr_S1_C1_2,     motorE,        tmotorTetrix, openLoop, driveLeft)
 #pragma config(Motor,  mtr_S1_C2_1,     motorF,        tmotorTetrix, openLoop)
-#pragma config(Motor,  mtr_S1_C2_2,     motorG,        tmotorTetrix, openLoop)
+#pragma config(Motor,  mtr_S1_C2_2,     red,           tmotorTetrix, openLoop)
 #pragma config(Servo,  srvo_S1_C3_1,    servo1,               tServoNone)
 #pragma config(Servo,  srvo_S1_C3_2,    servo2,               tServoNone)
 #pragma config(Servo,  srvo_S1_C3_3,    servo3,               tServoNone)
@@ -21,17 +22,17 @@ void findBeacon()
 	{
 		if(SensorValue[S3] <6)
 		{
-			motor[motorD] = -50;
-			motor[motorE] = 50;
+			motor[green] = -50;
+			motor[red] = 50;
 		}
 
 		if(SensorValue[S3] >6)
 		{
-			motor[motorD] = 50;
-			motor[motorE] = -50;
+			motor[green] = 50;
+			motor[red] = -50;
 		}
-	}	motor[motorD] = 50;
-	motor[motorE] = 50;
+	}	motor[green] = 50;
+	motor[green] = 50;
 	while (SensorValue[S2] == 0 && SensorValue[S4] == 0 )
 	{}
 }
@@ -39,21 +40,22 @@ void findBeacon()
 task main()
 {
 	waitForStart();
-	motor[motorD] = 50;
-	motor[motorE] = 50;
-	wait1Msec(2400);
+	motor[green] = 50;
+	motor[red] = 50;
+	wait1Msec(6500);
 	//while(SensorValue[S2] == 0)
-	motor[motorD] = -50;
-	motor[motorE] = 50;
+	motor[green] = -50;
+	motor[red] = 50;
 	wait1Msec(2000);
 	//motor[motorD] = -50;
 	//motor[motorE] = -50;
 	while(true)
-
-	{findBeacon();
-		motor[motorD] = -50;
-		motor[motorE] = -50;
-		sleep(1500);}
+	{
+		findBeacon();
+		motor[green] = -50;
+		motor[red] = -50;
+		sleep(1500);
+	}
 }
 //motor[motorD] = 50;
 //motor[motorE] = 50;
