@@ -4,7 +4,7 @@
 #pragma config(Motor,  motorC,           ,             tmotorNXT, openLoop)
 #pragma config(Motor,  mtr_S1_C1_1,     green,         tmotorTetrix, openLoop, reversed, driveRight)
 #pragma config(Motor,  mtr_S1_C1_2,     motorE,        tmotorTetrix, openLoop, driveLeft)
-#pragma config(Motor,  mtr_S1_C2_1,     motorF,        tmotorTetrix, openLoop)
+#pragma config(Motor,  mtr_S1_C2_1,     blue,          tmotorTetrix, openLoop)
 #pragma config(Motor,  mtr_S1_C2_2,     red,           tmotorTetrix, openLoop)
 #pragma config(Servo,  srvo_S1_C3_1,    servo1,               tServoStandard)
 #pragma config(Servo,  srvo_S1_C3_2,    servo2,               tServoNone)
@@ -62,25 +62,25 @@ task main()
 
 		if(joy2Btn(7) == 1 || joy1Btn(7) == 1) //If Joy2-Button7 || Joy1-Button7 is pressed:
 		{
-			motor[motorF] = -70;
+			motor[motorA] = -60;
 		}
 
 		else if(joy2Btn(8) == 1 || joy1Btn(8) == 1) //If Joy2-Button8 || Joy1-Button8 is pressed:
 
 		{
-			motor[motorF] = 70;
+			motor[motorA] = 60;
 		}
 		else
-		{motor[motorF] = 0;
+		{motor[motorA] = 0;
 		}
 
 		if(abs(joystick.joy2_y2) > threshold)
 		{
-			motor[motorA] = joystick.joy2_y2; //y2 controller moves harvester
+			motor[blue] = joystick.joy2_y2/2; //y2 controller moves harvester
 		}
 		else
 		{
-			motor[motorA] = 0;
+			motor[blue] = 0;
 		}
 	}
 }
